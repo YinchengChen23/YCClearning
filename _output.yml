@@ -5,4 +5,4 @@ bookdown::gitbook:
       before: |
         <li><a href="./">YCC's blog</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/YinchengChen23/YCClearning" target="blank">Published with bookdown</a></li>
