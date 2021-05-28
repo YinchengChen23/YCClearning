@@ -1,5 +1,5 @@
 --- 
-title: "YCC's blog"
+title: "The trip for program learning "
 author: "YinCheng Chen"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
