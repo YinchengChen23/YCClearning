@@ -1,7 +1,9 @@
 --- 
-title: "YCC's learning space"
+title: "The trip for program learning "
 author: "YinCheng Chen"
 date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+link-citations: yes
 ---
 
 # Motivation
