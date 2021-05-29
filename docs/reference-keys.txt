@@ -1,3 +1,4 @@
 motivation
 bash-cheatsheet
 基本的指令
+關於擷取檔案的資訊的方法
