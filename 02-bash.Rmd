@@ -1,42 +1,141 @@
 # Bash cheatsheet
 ### 基本的指令
 
-變更現行目錄至 folder_A
+change directory
 ```
-cd folder_A
+cd folder_A   #變更現行目錄至 folder_A
+cd ..         #回上一層目錄
+cd ~          #回到home
 ```
 
-陳列現行目錄下的檔案名稱
+make directory
 ```
-ls
+mkdir folder_A   #建立 folder_A 至現行目錄
+```
+
+list
+```
+ls      #陳列現行目錄下的檔案名稱
 ls -a   #檢視隱藏檔案
 ls -l   #檢視詳細清單
 ```
 
-移動file_1 從 folder_A 至 folder_B
+move
 ```
-mv folder_A/file_1 folder_B/file_1
-mv folder_A/file_1 folder_A/file_2   #在原資料夾下變更檔案名稱為 file_2
+mv folder_A/file_1 folder_B/file_1           #移動file_1 從 folder_A 至 folder_B
+mv folder_A/file_1 folder_A/file_2           #在原資料夾下變更檔案名稱為 file_2
 mv -r folder_A folder_B/folder_A將folder_A   #移動至folder_B底下
 ```
 
-複製file_1 從 folder_A 至 folder_B
+copy
 ```
-cp folder_A/file_1 folder_B/file_1
-cp -r folder_A folder_B/folder_A   #將folder_A 複製至folder_B底下
+cp folder_A/file_1 folder_B/file_1   #複製file_1 從 folder_A 至 folder_B
+cp -r folder_A folder_B/folder_A     #將folder_A 複製至folder_B底下
 ```
 
-刪除file_1
+remove
 ```
- rm file_1
+ rm file_1        #刪除 file_1
  rm -r folder_A   #刪除 folder_A
 ```
 
-### 關於擷取檔案的資訊的方法
-假設有一個名為anywhere_door.jpg的圖片在/home/dorAemon/treasure_bag的資料夾內
+a glance at file
+```
+ less file_1   #進入閱讀模式查看 file_1 , 推出按q鍵
+ cat file_1    #將file_1印在銀幕上
+ more file_1   #將file_1以一頁一頁的顯示，逐頁閱讀
+ head file_1   #只檢視file_1的前6行
+ tail file_1   #指檢視file_1的後6行
+```
 
-絕對路徑為
+system status
+```
+top       #檢視目前電腦運行的狀態
+df -g     #檢視目前硬碟的狀態，以Gb為單位
+free -g   #檢視目前RAM的狀態，以Gb為單位
+who       #檢視目前那些使用者在線上
+```
 
+### PATH
+#### 絕對路徑與相對路徑
+
+假設有個名為anywhere_door.jpg的圖片在treasure_bag的資料夾內。
+
+絕對路徑是以根目錄"/"為始，為
+```
 /home/dorAemon/treasure_bag/anywhere_door.jpg
+```
+相對路徑則是以當下目錄為主，若當下在自己的home目錄，則為
+```
+treasure_bag/anywhere_door.jpg   or
+~/treasure_bag/anywhere_door.jpg
+```
 
+#### 解析檔案
+
+以 /home/dorAemon/treasure_bag/anywhere_door.jpg 為例
+/home/dorAemon/treasure_bag 為路徑
+anywhere_door 為檔名
+.jpg 為副檔名
+以此，我們可以做基本的操作
+```
+basename /home/dorAemon/treasure_bag/anywhere_door.jpg         #萃取完整檔案名
+    anywhere_door.jpg
+    
+basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名
+    anywhere_door
+dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑
+    /home/dorAemon/treasure_bag
+```
+
+#### 環境變數
+
+當我們要執行某指令時需要將，只輸入指令名稱，而沒有輸入完整指令路徑，系統會在環境變數
+中的目錄搜尋相關指令, 如你在任何資料夾中都可以執行ls 而非/bin/ls。
+
+檢視目前的環境變數可用以下指令
+```
+echo $PATH   or
+env
+set   #檢視目前 shell 的所有變數
+```
+
+若執行echo \$PATH 會輸出類似內容
+```
+[dorAemon@localhost ~]$ echo $PATH
+/usr/local/bin:/usr/bin:/data/home/dorAemon/.local/bin:/data/home/dorAemon/bin:/data/home/dorAemon/treasure_bag
+```
+以:為分隔符號可知道環境變數為
+```
+/usr/local/bin
+/usr/bin
+/data/home/dorAemon/.local/bin
+/data/home/dorAemon/bin
+/data/home/dorAemon/treasure_bag
+```
+
+若想將在任意地方執行 ~/treasure_bag 底下的執行檔，需要將~/treasure_bag加入環境變數，即
+```
+PATH="${PATH}:/home/dorAemon/treasure_bag"   or
+export LD_LIBRARY_PATH=/home/dorAemon/treasure_bag
+```
+
+#### 尋找檔案
+```
+find /home -name anywhere_door.jpg                  #在/home目錄底下尋找anywhere_door.jpg檔案
+find /home -iname anywhere_door.jpg                 #尋找anywhere_door.jpg時不分英文大小寫
+find /home -type d -name anywhere_door              #尋找名為anywhere_door的資料夾 ; f : file; l : link
+find /home -user dorAemon -name anywhere_door.jpg   #尋找anywhere_door.jpg且檔案擁有者是dorAemon
+find /home -group developer                         #尋找anywhere_door.jpg檔案且屬於developer的群組
+
+which anywhere_door    #在$PATH所規範的路徑去搜尋anywhere_door的檔名
+```
+
+### 變數
+
+
+### 判斷式與迴圈
+
+
+### grep, awk, sed 三兄弟
 
