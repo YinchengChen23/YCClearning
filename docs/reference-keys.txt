@@ -1,4 +1,11 @@
 motivation
 bash-cheatsheet
 基本的指令
-關於擷取檔案的資訊的方法
+path
+絕對路徑與相對路徑
+解析檔案
+環境變數
+尋找檔案
+變數
+判斷式與迴圈
+grep-awk-sed-三兄弟

@@ -75,7 +75,10 @@
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
 <li class="chapter" data-level="2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html"><i class="fa fa-check"></i><b>2</b> Bash cheatsheet</a><ul>
 <li class="chapter" data-level="2.0.1" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#基本的指令"><i class="fa fa-check"></i><b>2.0.1</b> 基本的指令</a></li>
-<li class="chapter" data-level="2.0.2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#關於擷取檔案的資訊的方法"><i class="fa fa-check"></i><b>2.0.2</b> 關於擷取檔案的資訊的方法</a></li>
+<li class="chapter" data-level="2.0.2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#path"><i class="fa fa-check"></i><b>2.0.2</b> PATH</a></li>
+<li class="chapter" data-level="2.0.3" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#變數"><i class="fa fa-check"></i><b>2.0.3</b> 變數</a></li>
+<li class="chapter" data-level="2.0.4" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#判斷式與迴圈"><i class="fa fa-check"></i><b>2.0.4</b> 判斷式與迴圈</a></li>
+<li class="chapter" data-level="2.0.5" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#grep-awk-sed-三兄弟"><i class="fa fa-check"></i><b>2.0.5</b> grep, awk, sed 三兄弟</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -100,28 +103,99 @@
 <h1><span class="header-section-number">Chapter 2</span> Bash cheatsheet</h1>
 <div id="基本的指令" class="section level3">
 <h3><span class="header-section-number">2.0.1</span> 基本的指令</h3>
-<p>變更現行目錄至 folder_A</p>
-<pre><code>cd folder_A</code></pre>
-<p>陳列現行目錄下的檔案名稱</p>
-<pre><code>ls
+<p>change directory</p>
+<pre><code>cd folder_A   #變更現行目錄至 folder_A
+cd ..         #回上一層目錄
+cd ~          #回到home</code></pre>
+<p>make directory</p>
+<pre><code>mkdir folder_A   #建立 folder_A 至現行目錄</code></pre>
+<p>list</p>
+<pre><code>ls      #陳列現行目錄下的檔案名稱
 ls -a   #檢視隱藏檔案
 ls -l   #檢視詳細清單</code></pre>
-<p>移動file_1 從 folder_A 至 folder_B</p>
-<pre><code>mv folder_A/file_1 folder_B/file_1
-mv folder_A/file_1 folder_A/file_2   #在原資料夾下變更檔案名稱為 file_2
+<p>move</p>
+<pre><code>mv folder_A/file_1 folder_B/file_1           #移動file_1 從 folder_A 至 folder_B
+mv folder_A/file_1 folder_A/file_2           #在原資料夾下變更檔案名稱為 file_2
 mv -r folder_A folder_B/folder_A將folder_A   #移動至folder_B底下</code></pre>
-<p>複製file_1 從 folder_A 至 folder_B</p>
-<pre><code>cp folder_A/file_1 folder_B/file_1
-cp -r folder_A folder_B/folder_A   #將folder_A 複製至folder_B底下</code></pre>
-<p>刪除file_1</p>
-<pre><code> rm file_1
+<p>copy</p>
+<pre><code>cp folder_A/file_1 folder_B/file_1   #複製file_1 從 folder_A 至 folder_B
+cp -r folder_A folder_B/folder_A     #將folder_A 複製至folder_B底下</code></pre>
+<p>remove</p>
+<pre><code> rm file_1        #刪除 file_1
  rm -r folder_A   #刪除 folder_A</code></pre>
+<p>a glance at file</p>
+<pre><code> less file_1   #進入閱讀模式查看 file_1 , 推出按q鍵
+ cat file_1    #將file_1印在銀幕上
+ more file_1   #將file_1以一頁一頁的顯示，逐頁閱讀
+ head file_1   #只檢視file_1的前6行
+ tail file_1   #指檢視file_1的後6行</code></pre>
+<p>system status</p>
+<pre><code>top       #檢視目前電腦運行的狀態
+df -g     #檢視目前硬碟的狀態，以Gb為單位
+free -g   #檢視目前RAM的狀態，以Gb為單位
+who       #檢視目前那些使用者在線上</code></pre>
 </div>
-<div id="關於擷取檔案的資訊的方法" class="section level3">
-<h3><span class="header-section-number">2.0.2</span> 關於擷取檔案的資訊的方法</h3>
-<p>假設有一個名為anywhere_door.jpg的圖片在/home/dorAemon/treasure_bag的資料夾內</p>
-<p>絕對路徑為</p>
-<p>/home/dorAemon/treasure_bag/anywhere_door.jpg</p>
+<div id="path" class="section level3">
+<h3><span class="header-section-number">2.0.2</span> PATH</h3>
+<div id="絕對路徑與相對路徑" class="section level4">
+<h4><span class="header-section-number">2.0.2.1</span> 絕對路徑與相對路徑</h4>
+<p>假設有個名為anywhere_door.jpg的圖片在treasure_bag的資料夾內。</p>
+<p>絕對路徑是以根目錄&quot;/&quot;為始，為</p>
+<pre><code>/home/dorAemon/treasure_bag/anywhere_door.jpg</code></pre>
+<p>相對路徑則是以當下目錄為主，若當下在自己的home目錄，則為</p>
+<pre><code>treasure_bag/anywhere_door.jpg   or
+~/treasure_bag/anywhere_door.jpg</code></pre>
+</div>
+<div id="解析檔案" class="section level4">
+<h4><span class="header-section-number">2.0.2.2</span> 解析檔案</h4>
+<p>以 /home/dorAemon/treasure_bag/anywhere_door.jpg 為例 /home/dorAemon/treasure_bag 為路徑 anywhere_door 為檔名 .jpg 為副檔名 以此，我們可以做基本的操作</p>
+<pre><code>basename /home/dorAemon/treasure_bag/anywhere_door.jpg         #萃取完整檔案名
+    anywhere_door.jpg
+    
+basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名
+    anywhere_door
+dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑
+    /home/dorAemon/treasure_bag</code></pre>
+</div>
+<div id="環境變數" class="section level4">
+<h4><span class="header-section-number">2.0.2.3</span> 環境變數</h4>
+<p>當我們要執行某指令時需要將，只輸入指令名稱，而沒有輸入完整指令路徑，系統會在環境變數 中的目錄搜尋相關指令, 如你在任何資料夾中都可以執行ls 而非/bin/ls。</p>
+<p>檢視目前的環境變數可用以下指令</p>
+<pre><code>echo $PATH   or
+env
+set   #檢視目前 shell 的所有變數</code></pre>
+<p>若執行echo $PATH 會輸出類似內容</p>
+<pre><code>[dorAemon@localhost ~]$ echo $PATH
+/usr/local/bin:/usr/bin:/data/home/dorAemon/.local/bin:/data/home/dorAemon/bin:/data/home/dorAemon/treasure_bag</code></pre>
+<p>以:為分隔符號可知道環境變數為</p>
+<pre><code>/usr/local/bin
+/usr/bin
+/data/home/dorAemon/.local/bin
+/data/home/dorAemon/bin
+/data/home/dorAemon/treasure_bag</code></pre>
+<p>若想將在任意地方執行 ~/treasure_bag 底下的執行檔，需要將~/treasure_bag加入環境變數，即</p>
+<pre><code>PATH=&quot;${PATH}:/home/dorAemon/treasure_bag&quot;   or
+export LD_LIBRARY_PATH=/home/dorAemon/treasure_bag</code></pre>
+</div>
+<div id="尋找檔案" class="section level4">
+<h4><span class="header-section-number">2.0.2.4</span> 尋找檔案</h4>
+<pre><code>find /home -name anywhere_door.jpg                  #在/home目錄底下尋找anywhere_door.jpg檔案
+find /home -iname anywhere_door.jpg                 #尋找anywhere_door.jpg時不分英文大小寫
+find /home -type d -name anywhere_door              #尋找名為anywhere_door的資料夾 ; f : file; l : link
+find /home -user dorAemon -name anywhere_door.jpg   #尋找anywhere_door.jpg且檔案擁有者是dorAemon
+find /home -group developer                         #尋找anywhere_door.jpg檔案且屬於developer的群組
+
+which anywhere_door    #在$PATH所規範的路徑去搜尋anywhere_door的檔名</code></pre>
+</div>
+</div>
+<div id="變數" class="section level3">
+<h3><span class="header-section-number">2.0.3</span> 變數</h3>
+</div>
+<div id="判斷式與迴圈" class="section level3">
+<h3><span class="header-section-number">2.0.4</span> 判斷式與迴圈</h3>
+</div>
+<div id="grep-awk-sed-三兄弟" class="section level3">
+<h3><span class="header-section-number">2.0.5</span> grep, awk, sed 三兄弟</h3>
 
 </div>
 </div>
