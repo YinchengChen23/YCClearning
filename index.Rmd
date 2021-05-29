@@ -1,9 +1,11 @@
 --- 
-title: "The trip for program learning "
+title: "YCC's learning space"
 author: "YinCheng Chen"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+link-citations: yes
 ---
 
-# Down the rabbit-hole
+# Motivation
+To pay tribute to the shoulders of R giants, I start to write some essay about my R skill and make some note in this website. 
 
