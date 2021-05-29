@@ -2,8 +2,6 @@
 title: "YCC's learning space"
 author: "YinCheng Chen"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-link-citations: yes
 ---
 
 # Motivation
