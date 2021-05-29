@@ -74,18 +74,20 @@ treasure_bag/anywhere_door.jpg   or
 #### 解析檔案
 
 以 /home/dorAemon/treasure_bag/anywhere_door.jpg 為例
+
 /home/dorAemon/treasure_bag 為路徑
+
 anywhere_door 為檔名
+
 .jpg 為副檔名
+
 以此，我們可以做基本的操作
 ```
-basename /home/dorAemon/treasure_bag/anywhere_door.jpg         #萃取完整檔案名
-    anywhere_door.jpg
+basename /home/dorAemon/treasure_bag/anywhere_door.jpg         #萃取完整檔案名 anywhere_door.jpg
     
-basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名
-    anywhere_door
-dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑
-    /home/dorAemon/treasure_bag
+basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名 anywhere_door
+    
+dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑 /home/dorAemon/treasure_bag
 ```
 
 #### 環境變數
