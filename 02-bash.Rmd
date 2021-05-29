@@ -9,27 +9,34 @@ cd folder_A
 陳列現行目錄下的檔案名稱
 ```
 ls
-ls -a   檢視隱藏檔案
-ls -l   詳細清單
+ls -a   #檢視隱藏檔案
+ls -l   #檢視詳細清單
 ```
 
 移動file_1 從 folder_A 至 folder_B
 ```
 mv folder_A/file_1 folder_B/file_1
-mv folder_A/file_1 folder_A/file_2   在原資料夾下變更檔案名稱為 file_2
-mv -r folder_A folder_B/folder_A將folder_A 移動至folder_B底下
+mv folder_A/file_1 folder_A/file_2   #在原資料夾下變更檔案名稱為 file_2
+mv -r folder_A folder_B/folder_A將folder_A   #移動至folder_B底下
 ```
 
 複製file_1 從 folder_A 至 folder_B
 ```
 cp folder_A/file_1 folder_B/file_1
-cp -r folder_A folder_B/folder_A   將folder_A 複製至folder_B底下
+cp -r folder_A folder_B/folder_A   #將folder_A 複製至folder_B底下
 ```
 
 刪除file_1
 ```
  rm file_1
- rm -r folder_A 刪除 folder_A
+ rm -r folder_A   #刪除 folder_A
 ```
+
+### 關於擷取檔案的資訊的方法
+假設有一個名為anywhere_door.jpg的圖片在/home/dorAemon/treasure_bag的資料夾內
+
+絕對路徑為
+
+/home/dorAemon/treasure_bag/anywhere_door.jpg
 
 
