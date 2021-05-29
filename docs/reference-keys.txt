@@ -1,0 +1,3 @@
+motivation
+bash-cheatsheet
+基本的指令
