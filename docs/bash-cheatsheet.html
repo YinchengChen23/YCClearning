@@ -148,14 +148,16 @@ who       #檢視目前那些使用者在線上</code></pre>
 </div>
 <div id="解析檔案" class="section level4">
 <h4><span class="header-section-number">2.0.2.2</span> 解析檔案</h4>
-<p>以 /home/dorAemon/treasure_bag/anywhere_door.jpg 為例 /home/dorAemon/treasure_bag 為路徑 anywhere_door 為檔名 .jpg 為副檔名 以此，我們可以做基本的操作</p>
-<pre><code>basename /home/dorAemon/treasure_bag/anywhere_door.jpg         #萃取完整檔案名
-    anywhere_door.jpg
+<p>以 /home/dorAemon/treasure_bag/anywhere_door.jpg 為例</p>
+<p>/home/dorAemon/treasure_bag 為路徑</p>
+<p>anywhere_door 為檔名</p>
+<p>.jpg 為副檔名</p>
+<p>以此，我們可以做基本的操作</p>
+<pre><code>basename /home/dorAemon/treasure_bag/anywhere_door.jpg         #萃取完整檔案名 anywhere_door.jpg
     
-basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名
-    anywhere_door
-dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑
-    /home/dorAemon/treasure_bag</code></pre>
+basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名 anywhere_door
+    
+dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑 /home/dorAemon/treasure_bag</code></pre>
 </div>
 <div id="環境變數" class="section level4">
 <h4><span class="header-section-number">2.0.2.3</span> 環境變數</h4>
