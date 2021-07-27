@@ -1,0 +1,138 @@
+# R base function
+### 字串
+字串連接
+```{r, collapse=TRUE}
+paste("OTU_", 1, sep="")
+paste("OTU_", 1:10, sep="")
+```
+
+```{r, collapse=TRUE}
+str_vec1 <- c("aaa", "bbb", "ccc", "ddd")
+str_vec2 <- c(1, 2, 3, 4)
+paste(str_vec1, str_vec2, sep="_")
+paste(str_vec1, collapse ="_")
+```
+字串切割
+```{r, collapse=TRUE}
+sentence = "The earth is round (p < 0.05)."
+strsplit(sentence, split=" ", fixed=F)
+strsplit(sentence, split="\\s", fixed=F)
+substr(sentence,5,9)
+```
+部份字串搜尋
+```{r, collapse=TRUE}
+str_vec <- c("aaa", "bbb", "ccc", "ddd")
+grep("a", str_vec)
+grep("b", str_vec)
+grep("b", str_vec, value=T)
+grep("b", str_vec, value=T, invert=T)
+grep("z", str_vec)
+grepl("b", str_vec)
+```
+字串取代
+```{r, collapse=TRUE}
+sentence = "Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae"
+sub(";", replacement="__", sentence)
+gsub(";", replacement="__", sentence)
+```
+### 亂數產生
+Uniform distribution
+```{r, collapse=TRUE}
+runif(5) #sampling 5 numbers form 0 to 1
+runif(5,2,10) #sampling 5 numbers form 2 to 10
+hist(runif(10000))
+```
+Normal distribution
+```{r, collapse=TRUE}
+rnorm(5) #sampling 5 numbers : mean = 0, sd = 1
+rnorm(5,10,1) #sampling 5 numbers : mean = 10, sd = 1
+hist(rnorm(10000,100,5))
+```
+Binomial distribution
+```{r, collapse=TRUE}
+rbinom(10,10,0.9)
+```
+Exponential distribution
+```{r, collapse=TRUE}
+rexp(10,3)
+```
+
+### 矩陣運算
+產生矩陣
+```{r, collapse=TRUE}
+M <- matrix(0, nrow = 5, ncol = 6)
+M
+M <- matrix(rnorm(3*2,10,5),3,2)
+M
+```
+測維度
+```{r, collapse=TRUE}
+dim(M)
+nrow(M)
+ncol(M)
+```
+矩陣組合
+```{r, collapse=TRUE}
+cbind(M,M)
+rbind(M,M)
+```
+矩陣轉置
+```{r, collapse=TRUE}
+M <- matrix(1:8,nrow = 2, dimnames = list(c("r1","r2"),c("c1","c2","c3","c4")))
+M
+t(M) # 轉置
+M[nrow(M):1,] # 上下翻轉
+M[,ncol(M):1] # 左右翻轉
+t(apply(M, 2, rev)) # 順時針90度翻轉
+apply(t(M), 2, rev) # 逆時針90度翻轉
+```
+其他運算
+```{r, collapse=TRUE}
+M <- matrix(1:9,3,3)
+M
+diag(M) #對角線的元素
+diag(M) = 0
+M
+
+M %*% M #矩陣乘法
+
+library(matrixStats)
+M <- matrix(rnorm(5*7,10,3),5,7)
+M
+rowSums(M)
+rowMeans(M)
+rowSds(M)
+rowMaxs(M)
+rowMins(M)
+```
+Z-transformation
+```{r, echo=FALSE}
+gene_expression <- matrix(rnorm(5*6,10,3),5,6)
+colnames(gene_expression) <- paste0("sample_",1:6)
+rownames(gene_expression) <- paste0("gene_",1:5)
+```
+
+```{r, results="hide"}
+gene_expression
+```
+
+```{r, echo=FALSE}
+knitr::kable(gene_expression)
+```
+
+```{r, results="hide"}
+cal_z_score <- function(x){
+  (x - mean(x)) / sd(x)
+}
+z_transformed <- t(apply(gene_expression, 1, cal_z_score))
+z_transformed
+```
+
+```{r, echo=FALSE}
+knitr::kable(z_transformed)
+```
+
+```{r, collapse=TRUE}
+rowMeans(z_transformed)
+rowSds(z_transformed)
+```

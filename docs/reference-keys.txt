@@ -1,4 +1,15 @@
 motivation
+r-base-function
+字串
+亂數產生
+矩陣運算
+basic-statistics
+outline
+clustering-method
+dimension-reduction
+visualization
+ml-model
+rcpp
 bash-cheatsheet
 基本的指令
 path

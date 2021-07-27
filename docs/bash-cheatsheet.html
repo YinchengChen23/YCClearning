@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Bash cheatsheet | The trip for program learning</title>
-  <meta name="description" content="Chapter 2 Bash cheatsheet | The trip for program learning" />
+  <title>Chapter 9 Bash cheatsheet | The trip for program learning</title>
+  <meta name="description" content="Chapter 9 Bash cheatsheet | The trip for program learning" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Bash cheatsheet | The trip for program learning" />
+  <meta property="og:title" content="Chapter 9 Bash cheatsheet | The trip for program learning" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Bash cheatsheet | The trip for program learning" />
+  <meta name="twitter:title" content="Chapter 9 Bash cheatsheet | The trip for program learning" />
   
   
   
@@ -24,14 +24,14 @@
 <meta name="author" content="YinCheng Chen" />
 
 
-<meta name="date" content="2021-05-29" />
+<meta name="date" content="2021-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
+<link rel="prev" href="rcpp.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,10 +50,75 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -73,12 +138,25 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
-<li class="chapter" data-level="2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html"><i class="fa fa-check"></i><b>2</b> Bash cheatsheet</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#基本的指令"><i class="fa fa-check"></i><b>2.0.1</b> 基本的指令</a></li>
-<li class="chapter" data-level="2.0.2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#path"><i class="fa fa-check"></i><b>2.0.2</b> PATH</a></li>
-<li class="chapter" data-level="2.0.3" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#變數"><i class="fa fa-check"></i><b>2.0.3</b> 變數</a></li>
-<li class="chapter" data-level="2.0.4" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#判斷式與迴圈"><i class="fa fa-check"></i><b>2.0.4</b> 判斷式與迴圈</a></li>
-<li class="chapter" data-level="2.0.5" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#grep-awk-sed-三兄弟"><i class="fa fa-check"></i><b>2.0.5</b> grep, awk, sed 三兄弟</a></li>
+<li class="chapter" data-level="2" data-path="r-base-function.html"><a href="r-base-function.html"><i class="fa fa-check"></i><b>2</b> R base function</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="r-base-function.html"><a href="r-base-function.html#字串"><i class="fa fa-check"></i><b>2.0.1</b> 字串</a></li>
+<li class="chapter" data-level="2.0.2" data-path="r-base-function.html"><a href="r-base-function.html#亂數產生"><i class="fa fa-check"></i><b>2.0.2</b> 亂數產生</a></li>
+<li class="chapter" data-level="2.0.3" data-path="r-base-function.html"><a href="r-base-function.html#矩陣運算"><i class="fa fa-check"></i><b>2.0.3</b> 矩陣運算</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>3</b> Basic Statistics</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="basic-statistics.html"><a href="basic-statistics.html#outline"><i class="fa fa-check"></i><b>3.0.1</b> Outline</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clustering-method.html"><a href="clustering-method.html"><i class="fa fa-check"></i><b>4</b> Clustering Method</a></li>
+<li class="chapter" data-level="5" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i><b>5</b> Dimension Reduction</a></li>
+<li class="chapter" data-level="6" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>6</b> Visualization</a></li>
+<li class="chapter" data-level="7" data-path="ml-model.html"><a href="ml-model.html"><i class="fa fa-check"></i><b>7</b> ML Model</a></li>
+<li class="chapter" data-level="8" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>8</b> Rcpp</a></li>
+<li class="chapter" data-level="9" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html"><i class="fa fa-check"></i><b>9</b> Bash cheatsheet</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#基本的指令"><i class="fa fa-check"></i><b>9.0.1</b> 基本的指令</a></li>
+<li class="chapter" data-level="9.0.2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#path"><i class="fa fa-check"></i><b>9.0.2</b> PATH</a></li>
+<li class="chapter" data-level="9.0.3" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#變數"><i class="fa fa-check"></i><b>9.0.3</b> 變數</a></li>
+<li class="chapter" data-level="9.0.4" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#判斷式與迴圈"><i class="fa fa-check"></i><b>9.0.4</b> 判斷式與迴圈</a></li>
+<li class="chapter" data-level="9.0.5" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#grep-awk-sed-三兄弟"><i class="fa fa-check"></i><b>9.0.5</b> grep, awk, sed 三兄弟</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -100,9 +178,9 @@
 
             <section class="normal" id="section-">
 <div id="bash-cheatsheet" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Bash cheatsheet</h1>
+<h1><span class="header-section-number">Chapter 9</span> Bash cheatsheet</h1>
 <div id="基本的指令" class="section level3">
-<h3><span class="header-section-number">2.0.1</span> 基本的指令</h3>
+<h3><span class="header-section-number">9.0.1</span> 基本的指令</h3>
 <p>change directory</p>
 <pre><code>cd folder_A   #變更現行目錄至 folder_A
 cd ..         #回上一層目錄
@@ -136,18 +214,18 @@ free -g   #檢視目前RAM的狀態，以Gb為單位
 who       #檢視目前那些使用者在線上</code></pre>
 </div>
 <div id="path" class="section level3">
-<h3><span class="header-section-number">2.0.2</span> PATH</h3>
+<h3><span class="header-section-number">9.0.2</span> PATH</h3>
 <div id="絕對路徑與相對路徑" class="section level4">
-<h4><span class="header-section-number">2.0.2.1</span> 絕對路徑與相對路徑</h4>
+<h4><span class="header-section-number">9.0.2.1</span> 絕對路徑與相對路徑</h4>
 <p>假設有個名為anywhere_door.jpg的圖片在treasure_bag的資料夾內。</p>
-<p>絕對路徑是以根目錄&quot;/&quot;為始，為</p>
+<p>絕對路徑是以根目錄“/”為始，為</p>
 <pre><code>/home/dorAemon/treasure_bag/anywhere_door.jpg</code></pre>
 <p>相對路徑則是以當下目錄為主，若當下在自己的home目錄，則為</p>
 <pre><code>treasure_bag/anywhere_door.jpg   or
 ~/treasure_bag/anywhere_door.jpg</code></pre>
 </div>
 <div id="解析檔案" class="section level4">
-<h4><span class="header-section-number">2.0.2.2</span> 解析檔案</h4>
+<h4><span class="header-section-number">9.0.2.2</span> 解析檔案</h4>
 <p>以 /home/dorAemon/treasure_bag/anywhere_door.jpg 為例</p>
 <p>/home/dorAemon/treasure_bag 為路徑</p>
 <p>anywhere_door 為檔名</p>
@@ -160,8 +238,9 @@ basename -s .jpg /home/dorAemon/treasure_bag/anywhere_door.jpg #萃取檔案名 
 dirname /home/dorAemon/treasure_bag/anywhere_door.jpg          #萃取檔案路徑 /home/dorAemon/treasure_bag</code></pre>
 </div>
 <div id="環境變數" class="section level4">
-<h4><span class="header-section-number">2.0.2.3</span> 環境變數</h4>
-<p>當我們要執行某指令時需要將，只輸入指令名稱，而沒有輸入完整指令路徑，系統會在環境變數 中的目錄搜尋相關指令, 如你在任何資料夾中都可以執行ls 而非/bin/ls。</p>
+<h4><span class="header-section-number">9.0.2.3</span> 環境變數</h4>
+<p>當我們要執行某指令時需要將，只輸入指令名稱，而沒有輸入完整指令路徑，系統會在環境變數
+中的目錄搜尋相關指令, 如你在任何資料夾中都可以執行ls 而非/bin/ls。</p>
 <p>檢視目前的環境變數可用以下指令</p>
 <pre><code>echo $PATH   or
 env
@@ -180,7 +259,7 @@ set   #檢視目前 shell 的所有變數</code></pre>
 export LD_LIBRARY_PATH=/home/dorAemon/treasure_bag</code></pre>
 </div>
 <div id="尋找檔案" class="section level4">
-<h4><span class="header-section-number">2.0.2.4</span> 尋找檔案</h4>
+<h4><span class="header-section-number">9.0.2.4</span> 尋找檔案</h4>
 <pre><code>find /home -name anywhere_door.jpg                  #在/home目錄底下尋找anywhere_door.jpg檔案
 find /home -iname anywhere_door.jpg                 #尋找anywhere_door.jpg時不分英文大小寫
 find /home -type d -name anywhere_door              #尋找名為anywhere_door的資料夾 ; f : file; l : link
@@ -191,13 +270,13 @@ which anywhere_door    #在$PATH所規範的路徑去搜尋anywhere_door的檔�
 </div>
 </div>
 <div id="變數" class="section level3">
-<h3><span class="header-section-number">2.0.3</span> 變數</h3>
+<h3><span class="header-section-number">9.0.3</span> 變數</h3>
 </div>
 <div id="判斷式與迴圈" class="section level3">
-<h3><span class="header-section-number">2.0.4</span> 判斷式與迴圈</h3>
+<h3><span class="header-section-number">9.0.4</span> 判斷式與迴圈</h3>
 </div>
 <div id="grep-awk-sed-三兄弟" class="section level3">
-<h3><span class="header-section-number">2.0.5</span> grep, awk, sed 三兄弟</h3>
+<h3><span class="header-section-number">9.0.5</span> grep, awk, sed 三兄弟</h3>
 
 </div>
 </div>
@@ -206,7 +285,7 @@ which anywhere_door    #在$PATH所規範的路徑去搜尋anywhere_door的檔�
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rcpp.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -239,7 +318,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YinchengChen23/YCClearning/edit/master/02-bash.Rmd",
+"link": "https://github.com/YinchengChen23/YCClearning/edit/master/09-bash.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -247,7 +326,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YinchengChen23/YCClearning/blob/master/02-bash.Rmd",
+"link": "https://github.com/YinchengChen23/YCClearning/blob/master/09-bash.Rmd",
 "text": null
 },
 "download": null,

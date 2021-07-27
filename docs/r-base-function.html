@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 R base function | The trip for program learning</title>
+  <meta name="description" content="Chapter 2 R base function | The trip for program learning" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 R base function | The trip for program learning" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 R base function | The trip for program learning" />
+  
+  
+  
+
+<meta name="author" content="YinCheng Chen" />
+
+
+<meta name="date" content="2021-07-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="basic-statistics.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">YCC blog</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
+<li class="chapter" data-level="2" data-path="r-base-function.html"><a href="r-base-function.html"><i class="fa fa-check"></i><b>2</b> R base function</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="r-base-function.html"><a href="r-base-function.html#字串"><i class="fa fa-check"></i><b>2.0.1</b> 字串</a></li>
+<li class="chapter" data-level="2.0.2" data-path="r-base-function.html"><a href="r-base-function.html#亂數產生"><i class="fa fa-check"></i><b>2.0.2</b> 亂數產生</a></li>
+<li class="chapter" data-level="2.0.3" data-path="r-base-function.html"><a href="r-base-function.html#矩陣運算"><i class="fa fa-check"></i><b>2.0.3</b> 矩陣運算</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>3</b> Basic Statistics</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="basic-statistics.html"><a href="basic-statistics.html#outline"><i class="fa fa-check"></i><b>3.0.1</b> Outline</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clustering-method.html"><a href="clustering-method.html"><i class="fa fa-check"></i><b>4</b> Clustering Method</a></li>
+<li class="chapter" data-level="5" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i><b>5</b> Dimension Reduction</a></li>
+<li class="chapter" data-level="6" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>6</b> Visualization</a></li>
+<li class="chapter" data-level="7" data-path="ml-model.html"><a href="ml-model.html"><i class="fa fa-check"></i><b>7</b> ML Model</a></li>
+<li class="chapter" data-level="8" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>8</b> Rcpp</a></li>
+<li class="chapter" data-level="9" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html"><i class="fa fa-check"></i><b>9</b> Bash cheatsheet</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#基本的指令"><i class="fa fa-check"></i><b>9.0.1</b> 基本的指令</a></li>
+<li class="chapter" data-level="9.0.2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#path"><i class="fa fa-check"></i><b>9.0.2</b> PATH</a></li>
+<li class="chapter" data-level="9.0.3" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#變數"><i class="fa fa-check"></i><b>9.0.3</b> 變數</a></li>
+<li class="chapter" data-level="9.0.4" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#判斷式與迴圈"><i class="fa fa-check"></i><b>9.0.4</b> 判斷式與迴圈</a></li>
+<li class="chapter" data-level="9.0.5" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#grep-awk-sed-三兄弟"><i class="fa fa-check"></i><b>9.0.5</b> grep, awk, sed 三兄弟</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The trip for program learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-base-function" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> R base function</h1>
+<div id="字串" class="section level3">
+<h3><span class="header-section-number">2.0.1</span> 字串</h3>
+<p>字串連接</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-base-function.html#cb1-1"></a><span class="kw">paste</span>(<span class="st">&quot;OTU_&quot;</span>, <span class="dv">1</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-2"><a href="r-base-function.html#cb1-2"></a><span class="co">## [1] &quot;OTU_1&quot;</span></span>
+<span id="cb1-3"><a href="r-base-function.html#cb1-3"></a><span class="kw">paste</span>(<span class="st">&quot;OTU_&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-4"><a href="r-base-function.html#cb1-4"></a><span class="co">##  [1] &quot;OTU_1&quot;  &quot;OTU_2&quot;  &quot;OTU_3&quot;  &quot;OTU_4&quot;  &quot;OTU_5&quot;  &quot;OTU_6&quot;  &quot;OTU_7&quot;  &quot;OTU_8&quot; </span></span>
+<span id="cb1-5"><a href="r-base-function.html#cb1-5"></a><span class="co">##  [9] &quot;OTU_9&quot;  &quot;OTU_10&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="r-base-function.html#cb2-1"></a>str_vec1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;aaa&quot;</span>, <span class="st">&quot;bbb&quot;</span>, <span class="st">&quot;ccc&quot;</span>, <span class="st">&quot;ddd&quot;</span>)</span>
+<span id="cb2-2"><a href="r-base-function.html#cb2-2"></a>str_vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb2-3"><a href="r-base-function.html#cb2-3"></a><span class="kw">paste</span>(str_vec1, str_vec2, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb2-4"><a href="r-base-function.html#cb2-4"></a><span class="co">## [1] &quot;aaa_1&quot; &quot;bbb_2&quot; &quot;ccc_3&quot; &quot;ddd_4&quot;</span></span>
+<span id="cb2-5"><a href="r-base-function.html#cb2-5"></a><span class="kw">paste</span>(str_vec1, <span class="dt">collapse =</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb2-6"><a href="r-base-function.html#cb2-6"></a><span class="co">## [1] &quot;aaa_bbb_ccc_ddd&quot;</span></span></code></pre></div>
+<p>字串切割</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-base-function.html#cb3-1"></a>sentence =<span class="st"> &quot;The earth is round (p &lt; 0.05).&quot;</span></span>
+<span id="cb3-2"><a href="r-base-function.html#cb3-2"></a><span class="kw">strsplit</span>(sentence, <span class="dt">split=</span><span class="st">&quot; &quot;</span>, <span class="dt">fixed=</span>F)</span>
+<span id="cb3-3"><a href="r-base-function.html#cb3-3"></a><span class="co">## [[1]]</span></span>
+<span id="cb3-4"><a href="r-base-function.html#cb3-4"></a><span class="co">## [1] &quot;The&quot;    &quot;earth&quot;  &quot;is&quot;     &quot;round&quot;  &quot;(p&quot;     &quot;&lt;&quot;      &quot;0.05).&quot;</span></span>
+<span id="cb3-5"><a href="r-base-function.html#cb3-5"></a><span class="kw">strsplit</span>(sentence, <span class="dt">split=</span><span class="st">&quot;</span><span class="ch">\\</span><span class="st">s&quot;</span>, <span class="dt">fixed=</span>F)</span>
+<span id="cb3-6"><a href="r-base-function.html#cb3-6"></a><span class="co">## [[1]]</span></span>
+<span id="cb3-7"><a href="r-base-function.html#cb3-7"></a><span class="co">## [1] &quot;The&quot;    &quot;earth&quot;  &quot;is&quot;     &quot;round&quot;  &quot;(p&quot;     &quot;&lt;&quot;      &quot;0.05).&quot;</span></span>
+<span id="cb3-8"><a href="r-base-function.html#cb3-8"></a><span class="kw">substr</span>(sentence,<span class="dv">5</span>,<span class="dv">9</span>)</span>
+<span id="cb3-9"><a href="r-base-function.html#cb3-9"></a><span class="co">## [1] &quot;earth&quot;</span></span></code></pre></div>
+<p>部份字串搜尋</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="r-base-function.html#cb4-1"></a>str_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;aaa&quot;</span>, <span class="st">&quot;bbb&quot;</span>, <span class="st">&quot;ccc&quot;</span>, <span class="st">&quot;ddd&quot;</span>)</span>
+<span id="cb4-2"><a href="r-base-function.html#cb4-2"></a><span class="kw">grep</span>(<span class="st">&quot;a&quot;</span>, str_vec)</span>
+<span id="cb4-3"><a href="r-base-function.html#cb4-3"></a><span class="co">## [1] 1</span></span>
+<span id="cb4-4"><a href="r-base-function.html#cb4-4"></a><span class="kw">grep</span>(<span class="st">&quot;b&quot;</span>, str_vec)</span>
+<span id="cb4-5"><a href="r-base-function.html#cb4-5"></a><span class="co">## [1] 2</span></span>
+<span id="cb4-6"><a href="r-base-function.html#cb4-6"></a><span class="kw">grep</span>(<span class="st">&quot;b&quot;</span>, str_vec, <span class="dt">value=</span>T)</span>
+<span id="cb4-7"><a href="r-base-function.html#cb4-7"></a><span class="co">## [1] &quot;bbb&quot;</span></span>
+<span id="cb4-8"><a href="r-base-function.html#cb4-8"></a><span class="kw">grep</span>(<span class="st">&quot;b&quot;</span>, str_vec, <span class="dt">value=</span>T, <span class="dt">invert=</span>T)</span>
+<span id="cb4-9"><a href="r-base-function.html#cb4-9"></a><span class="co">## [1] &quot;aaa&quot; &quot;ccc&quot; &quot;ddd&quot;</span></span>
+<span id="cb4-10"><a href="r-base-function.html#cb4-10"></a><span class="kw">grep</span>(<span class="st">&quot;z&quot;</span>, str_vec)</span>
+<span id="cb4-11"><a href="r-base-function.html#cb4-11"></a><span class="co">## integer(0)</span></span>
+<span id="cb4-12"><a href="r-base-function.html#cb4-12"></a><span class="kw">grepl</span>(<span class="st">&quot;b&quot;</span>, str_vec)</span>
+<span id="cb4-13"><a href="r-base-function.html#cb4-13"></a><span class="co">## [1] FALSE  TRUE FALSE FALSE</span></span></code></pre></div>
+<p>字串取代</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-base-function.html#cb5-1"></a>sentence =<span class="st"> &quot;Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae&quot;</span></span>
+<span id="cb5-2"><a href="r-base-function.html#cb5-2"></a><span class="kw">sub</span>(<span class="st">&quot;;&quot;</span>, <span class="dt">replacement=</span><span class="st">&quot;__&quot;</span>, sentence)</span>
+<span id="cb5-3"><a href="r-base-function.html#cb5-3"></a><span class="co">## [1] &quot;Bacteria__Firmicutes;Clostridia;Clostridiales;Lachnospiraceae&quot;</span></span>
+<span id="cb5-4"><a href="r-base-function.html#cb5-4"></a><span class="kw">gsub</span>(<span class="st">&quot;;&quot;</span>, <span class="dt">replacement=</span><span class="st">&quot;__&quot;</span>, sentence)</span>
+<span id="cb5-5"><a href="r-base-function.html#cb5-5"></a><span class="co">## [1] &quot;Bacteria__Firmicutes__Clostridia__Clostridiales__Lachnospiraceae&quot;</span></span></code></pre></div>
+</div>
+<div id="亂數產生" class="section level3">
+<h3><span class="header-section-number">2.0.2</span> 亂數產生</h3>
+<p>Uniform distribution</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="r-base-function.html#cb6-1"></a><span class="kw">runif</span>(<span class="dv">5</span>) <span class="co">#sampling 5 numbers form 0 to 1</span></span>
+<span id="cb6-2"><a href="r-base-function.html#cb6-2"></a><span class="co">## [1] 0.06509636 0.35188662 0.24384987 0.24882257 0.96668677</span></span>
+<span id="cb6-3"><a href="r-base-function.html#cb6-3"></a><span class="kw">runif</span>(<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">10</span>) <span class="co">#sampling 5 numbers form 2 to 10</span></span>
+<span id="cb6-4"><a href="r-base-function.html#cb6-4"></a><span class="co">## [1] 3.174527 4.582818 7.373401 2.057517 5.072188</span></span>
+<span id="cb6-5"><a href="r-base-function.html#cb6-5"></a><span class="kw">hist</span>(<span class="kw">runif</span>(<span class="dv">10000</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+Normal distribution</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-base-function.html#cb7-1"></a><span class="kw">rnorm</span>(<span class="dv">5</span>) <span class="co">#sampling 5 numbers : mean = 0, sd = 1</span></span>
+<span id="cb7-2"><a href="r-base-function.html#cb7-2"></a><span class="co">## [1] -0.3287833 -1.4417738  0.4028674  1.0017803  1.5747565</span></span>
+<span id="cb7-3"><a href="r-base-function.html#cb7-3"></a><span class="kw">rnorm</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">1</span>) <span class="co">#sampling 5 numbers : mean = 10, sd = 1</span></span>
+<span id="cb7-4"><a href="r-base-function.html#cb7-4"></a><span class="co">## [1]  8.570688 10.107122  7.819958 10.276319 11.210510</span></span>
+<span id="cb7-5"><a href="r-base-function.html#cb7-5"></a><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>,<span class="dv">100</span>,<span class="dv">5</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+Binomial distribution</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="r-base-function.html#cb8-1"></a><span class="kw">rbinom</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.9</span>)</span>
+<span id="cb8-2"><a href="r-base-function.html#cb8-2"></a><span class="co">##  [1]  8 10 10  8  8  8  9  9  8 10</span></span></code></pre></div>
+<p>Exponential distribution</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-base-function.html#cb9-1"></a><span class="kw">rexp</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb9-2"><a href="r-base-function.html#cb9-2"></a><span class="co">##  [1] 0.24656398 0.27291806 0.03554917 0.19220024 0.04971898 0.12651229</span></span>
+<span id="cb9-3"><a href="r-base-function.html#cb9-3"></a><span class="co">##  [7] 0.25893571 0.85301720 0.25429647 0.50166907</span></span></code></pre></div>
+</div>
+<div id="矩陣運算" class="section level3">
+<h3><span class="header-section-number">2.0.3</span> 矩陣運算</h3>
+<p>產生矩陣</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="r-base-function.html#cb10-1"></a>M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb10-2"><a href="r-base-function.html#cb10-2"></a>M</span>
+<span id="cb10-3"><a href="r-base-function.html#cb10-3"></a><span class="co">##      [,1] [,2] [,3] [,4] [,5] [,6]</span></span>
+<span id="cb10-4"><a href="r-base-function.html#cb10-4"></a><span class="co">## [1,]    0    0    0    0    0    0</span></span>
+<span id="cb10-5"><a href="r-base-function.html#cb10-5"></a><span class="co">## [2,]    0    0    0    0    0    0</span></span>
+<span id="cb10-6"><a href="r-base-function.html#cb10-6"></a><span class="co">## [3,]    0    0    0    0    0    0</span></span>
+<span id="cb10-7"><a href="r-base-function.html#cb10-7"></a><span class="co">## [4,]    0    0    0    0    0    0</span></span>
+<span id="cb10-8"><a href="r-base-function.html#cb10-8"></a><span class="co">## [5,]    0    0    0    0    0    0</span></span>
+<span id="cb10-9"><a href="r-base-function.html#cb10-9"></a>M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">5</span>),<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb10-10"><a href="r-base-function.html#cb10-10"></a>M</span>
+<span id="cb10-11"><a href="r-base-function.html#cb10-11"></a><span class="co">##           [,1]      [,2]</span></span>
+<span id="cb10-12"><a href="r-base-function.html#cb10-12"></a><span class="co">## [1,] 10.138406  3.227848</span></span>
+<span id="cb10-13"><a href="r-base-function.html#cb10-13"></a><span class="co">## [2,] 13.731884 22.110285</span></span>
+<span id="cb10-14"><a href="r-base-function.html#cb10-14"></a><span class="co">## [3,]  8.975233  5.426183</span></span></code></pre></div>
+<p>測維度</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-base-function.html#cb11-1"></a><span class="kw">dim</span>(M)</span>
+<span id="cb11-2"><a href="r-base-function.html#cb11-2"></a><span class="co">## [1] 3 2</span></span>
+<span id="cb11-3"><a href="r-base-function.html#cb11-3"></a><span class="kw">nrow</span>(M)</span>
+<span id="cb11-4"><a href="r-base-function.html#cb11-4"></a><span class="co">## [1] 3</span></span>
+<span id="cb11-5"><a href="r-base-function.html#cb11-5"></a><span class="kw">ncol</span>(M)</span>
+<span id="cb11-6"><a href="r-base-function.html#cb11-6"></a><span class="co">## [1] 2</span></span></code></pre></div>
+<p>矩陣組合</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-base-function.html#cb12-1"></a><span class="kw">cbind</span>(M,M)</span>
+<span id="cb12-2"><a href="r-base-function.html#cb12-2"></a><span class="co">##           [,1]      [,2]      [,3]      [,4]</span></span>
+<span id="cb12-3"><a href="r-base-function.html#cb12-3"></a><span class="co">## [1,] 10.138406  3.227848 10.138406  3.227848</span></span>
+<span id="cb12-4"><a href="r-base-function.html#cb12-4"></a><span class="co">## [2,] 13.731884 22.110285 13.731884 22.110285</span></span>
+<span id="cb12-5"><a href="r-base-function.html#cb12-5"></a><span class="co">## [3,]  8.975233  5.426183  8.975233  5.426183</span></span>
+<span id="cb12-6"><a href="r-base-function.html#cb12-6"></a><span class="kw">rbind</span>(M,M)</span>
+<span id="cb12-7"><a href="r-base-function.html#cb12-7"></a><span class="co">##           [,1]      [,2]</span></span>
+<span id="cb12-8"><a href="r-base-function.html#cb12-8"></a><span class="co">## [1,] 10.138406  3.227848</span></span>
+<span id="cb12-9"><a href="r-base-function.html#cb12-9"></a><span class="co">## [2,] 13.731884 22.110285</span></span>
+<span id="cb12-10"><a href="r-base-function.html#cb12-10"></a><span class="co">## [3,]  8.975233  5.426183</span></span>
+<span id="cb12-11"><a href="r-base-function.html#cb12-11"></a><span class="co">## [4,] 10.138406  3.227848</span></span>
+<span id="cb12-12"><a href="r-base-function.html#cb12-12"></a><span class="co">## [5,] 13.731884 22.110285</span></span>
+<span id="cb12-13"><a href="r-base-function.html#cb12-13"></a><span class="co">## [6,]  8.975233  5.426183</span></span></code></pre></div>
+<p>矩陣轉置</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-base-function.html#cb13-1"></a>M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>,<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;r1&quot;</span>,<span class="st">&quot;r2&quot;</span>),<span class="kw">c</span>(<span class="st">&quot;c1&quot;</span>,<span class="st">&quot;c2&quot;</span>,<span class="st">&quot;c3&quot;</span>,<span class="st">&quot;c4&quot;</span>)))</span>
+<span id="cb13-2"><a href="r-base-function.html#cb13-2"></a>M</span>
+<span id="cb13-3"><a href="r-base-function.html#cb13-3"></a><span class="co">##    c1 c2 c3 c4</span></span>
+<span id="cb13-4"><a href="r-base-function.html#cb13-4"></a><span class="co">## r1  1  3  5  7</span></span>
+<span id="cb13-5"><a href="r-base-function.html#cb13-5"></a><span class="co">## r2  2  4  6  8</span></span>
+<span id="cb13-6"><a href="r-base-function.html#cb13-6"></a><span class="kw">t</span>(M) <span class="co"># 轉置</span></span>
+<span id="cb13-7"><a href="r-base-function.html#cb13-7"></a><span class="co">##    r1 r2</span></span>
+<span id="cb13-8"><a href="r-base-function.html#cb13-8"></a><span class="co">## c1  1  2</span></span>
+<span id="cb13-9"><a href="r-base-function.html#cb13-9"></a><span class="co">## c2  3  4</span></span>
+<span id="cb13-10"><a href="r-base-function.html#cb13-10"></a><span class="co">## c3  5  6</span></span>
+<span id="cb13-11"><a href="r-base-function.html#cb13-11"></a><span class="co">## c4  7  8</span></span>
+<span id="cb13-12"><a href="r-base-function.html#cb13-12"></a>M[<span class="kw">nrow</span>(M)<span class="op">:</span><span class="dv">1</span>,] <span class="co"># 上下翻轉</span></span>
+<span id="cb13-13"><a href="r-base-function.html#cb13-13"></a><span class="co">##    c1 c2 c3 c4</span></span>
+<span id="cb13-14"><a href="r-base-function.html#cb13-14"></a><span class="co">## r2  2  4  6  8</span></span>
+<span id="cb13-15"><a href="r-base-function.html#cb13-15"></a><span class="co">## r1  1  3  5  7</span></span>
+<span id="cb13-16"><a href="r-base-function.html#cb13-16"></a>M[,<span class="kw">ncol</span>(M)<span class="op">:</span><span class="dv">1</span>] <span class="co"># 左右翻轉</span></span>
+<span id="cb13-17"><a href="r-base-function.html#cb13-17"></a><span class="co">##    c4 c3 c2 c1</span></span>
+<span id="cb13-18"><a href="r-base-function.html#cb13-18"></a><span class="co">## r1  7  5  3  1</span></span>
+<span id="cb13-19"><a href="r-base-function.html#cb13-19"></a><span class="co">## r2  8  6  4  2</span></span>
+<span id="cb13-20"><a href="r-base-function.html#cb13-20"></a><span class="kw">t</span>(<span class="kw">apply</span>(M, <span class="dv">2</span>, rev)) <span class="co"># 順時針90度翻轉</span></span>
+<span id="cb13-21"><a href="r-base-function.html#cb13-21"></a><span class="co">##    r2 r1</span></span>
+<span id="cb13-22"><a href="r-base-function.html#cb13-22"></a><span class="co">## c1  2  1</span></span>
+<span id="cb13-23"><a href="r-base-function.html#cb13-23"></a><span class="co">## c2  4  3</span></span>
+<span id="cb13-24"><a href="r-base-function.html#cb13-24"></a><span class="co">## c3  6  5</span></span>
+<span id="cb13-25"><a href="r-base-function.html#cb13-25"></a><span class="co">## c4  8  7</span></span>
+<span id="cb13-26"><a href="r-base-function.html#cb13-26"></a><span class="kw">apply</span>(<span class="kw">t</span>(M), <span class="dv">2</span>, rev) <span class="co"># 逆時針90度翻轉</span></span>
+<span id="cb13-27"><a href="r-base-function.html#cb13-27"></a><span class="co">##    r1 r2</span></span>
+<span id="cb13-28"><a href="r-base-function.html#cb13-28"></a><span class="co">## c4  7  8</span></span>
+<span id="cb13-29"><a href="r-base-function.html#cb13-29"></a><span class="co">## c3  5  6</span></span>
+<span id="cb13-30"><a href="r-base-function.html#cb13-30"></a><span class="co">## c2  3  4</span></span>
+<span id="cb13-31"><a href="r-base-function.html#cb13-31"></a><span class="co">## c1  1  2</span></span></code></pre></div>
+<p>其他運算</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-base-function.html#cb14-1"></a>M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb14-2"><a href="r-base-function.html#cb14-2"></a>M</span>
+<span id="cb14-3"><a href="r-base-function.html#cb14-3"></a><span class="co">##      [,1] [,2] [,3]</span></span>
+<span id="cb14-4"><a href="r-base-function.html#cb14-4"></a><span class="co">## [1,]    1    4    7</span></span>
+<span id="cb14-5"><a href="r-base-function.html#cb14-5"></a><span class="co">## [2,]    2    5    8</span></span>
+<span id="cb14-6"><a href="r-base-function.html#cb14-6"></a><span class="co">## [3,]    3    6    9</span></span>
+<span id="cb14-7"><a href="r-base-function.html#cb14-7"></a><span class="kw">diag</span>(M) <span class="co">#對角線的元素</span></span>
+<span id="cb14-8"><a href="r-base-function.html#cb14-8"></a><span class="co">## [1] 1 5 9</span></span>
+<span id="cb14-9"><a href="r-base-function.html#cb14-9"></a><span class="kw">diag</span>(M) =<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb14-10"><a href="r-base-function.html#cb14-10"></a>M</span>
+<span id="cb14-11"><a href="r-base-function.html#cb14-11"></a><span class="co">##      [,1] [,2] [,3]</span></span>
+<span id="cb14-12"><a href="r-base-function.html#cb14-12"></a><span class="co">## [1,]    0    4    7</span></span>
+<span id="cb14-13"><a href="r-base-function.html#cb14-13"></a><span class="co">## [2,]    2    0    8</span></span>
+<span id="cb14-14"><a href="r-base-function.html#cb14-14"></a><span class="co">## [3,]    3    6    0</span></span>
+<span id="cb14-15"><a href="r-base-function.html#cb14-15"></a></span>
+<span id="cb14-16"><a href="r-base-function.html#cb14-16"></a>M <span class="op">%*%</span><span class="st"> </span>M <span class="co">#矩陣乘法</span></span>
+<span id="cb14-17"><a href="r-base-function.html#cb14-17"></a><span class="co">##      [,1] [,2] [,3]</span></span>
+<span id="cb14-18"><a href="r-base-function.html#cb14-18"></a><span class="co">## [1,]   29   42   32</span></span>
+<span id="cb14-19"><a href="r-base-function.html#cb14-19"></a><span class="co">## [2,]   24   56   14</span></span>
+<span id="cb14-20"><a href="r-base-function.html#cb14-20"></a><span class="co">## [3,]   12   12   69</span></span>
+<span id="cb14-21"><a href="r-base-function.html#cb14-21"></a></span>
+<span id="cb14-22"><a href="r-base-function.html#cb14-22"></a><span class="kw">library</span>(matrixStats)</span>
+<span id="cb14-23"><a href="r-base-function.html#cb14-23"></a>M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">5</span><span class="op">*</span><span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">3</span>),<span class="dv">5</span>,<span class="dv">7</span>)</span>
+<span id="cb14-24"><a href="r-base-function.html#cb14-24"></a>M</span>
+<span id="cb14-25"><a href="r-base-function.html#cb14-25"></a><span class="co">##           [,1]      [,2]      [,3]     [,4]     [,5]      [,6]      [,7]</span></span>
+<span id="cb14-26"><a href="r-base-function.html#cb14-26"></a><span class="co">## [1,]  9.202091  6.930441  8.136562 14.31756 10.78076  8.670753 16.712549</span></span>
+<span id="cb14-27"><a href="r-base-function.html#cb14-27"></a><span class="co">## [2,]  9.860736 15.706941  6.924775 14.88571 11.38036  5.481977 11.288151</span></span>
+<span id="cb14-28"><a href="r-base-function.html#cb14-28"></a><span class="co">## [3,]  9.193525 11.074197 11.870961 10.28867 10.77733  9.303161  9.667019</span></span>
+<span id="cb14-29"><a href="r-base-function.html#cb14-29"></a><span class="co">## [4,]  6.352772 13.049293  9.720109  7.97660 13.30155 10.167701  9.047678</span></span>
+<span id="cb14-30"><a href="r-base-function.html#cb14-30"></a><span class="co">## [5,] 10.618904  7.101466 11.456040 14.82814 10.53788 13.362098 10.615421</span></span>
+<span id="cb14-31"><a href="r-base-function.html#cb14-31"></a><span class="kw">rowSums</span>(M)</span>
+<span id="cb14-32"><a href="r-base-function.html#cb14-32"></a><span class="co">## [1] 74.75072 75.52866 72.17486 69.61570 78.51995</span></span>
+<span id="cb14-33"><a href="r-base-function.html#cb14-33"></a><span class="kw">rowMeans</span>(M)</span>
+<span id="cb14-34"><a href="r-base-function.html#cb14-34"></a><span class="co">## [1] 10.678674 10.789808 10.310694  9.945101 11.217136</span></span>
+<span id="cb14-35"><a href="r-base-function.html#cb14-35"></a><span class="kw">rowSds</span>(M)</span>
+<span id="cb14-36"><a href="r-base-function.html#cb14-36"></a><span class="co">## [1] 3.5679873 3.7755010 0.9927325 2.5359791 2.4432695</span></span>
+<span id="cb14-37"><a href="r-base-function.html#cb14-37"></a><span class="kw">rowMaxs</span>(M)</span>
+<span id="cb14-38"><a href="r-base-function.html#cb14-38"></a><span class="co">## [1] 16.71255 15.70694 11.87096 13.30155 14.82814</span></span>
+<span id="cb14-39"><a href="r-base-function.html#cb14-39"></a><span class="kw">rowMins</span>(M)</span>
+<span id="cb14-40"><a href="r-base-function.html#cb14-40"></a><span class="co">## [1] 6.930441 5.481977 9.193525 6.352772 7.101466</span></span></code></pre></div>
+<p>Z-transformation</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-base-function.html#cb15-1"></a>gene_expression</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample_1</th>
+<th align="right">sample_2</th>
+<th align="right">sample_3</th>
+<th align="right">sample_4</th>
+<th align="right">sample_5</th>
+<th align="right">sample_6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gene_1</td>
+<td align="right">10.841839</td>
+<td align="right">6.023889</td>
+<td align="right">9.327220</td>
+<td align="right">9.394678</td>
+<td align="right">13.776283</td>
+<td align="right">13.188046</td>
+</tr>
+<tr class="even">
+<td align="left">gene_2</td>
+<td align="right">12.817021</td>
+<td align="right">9.170660</td>
+<td align="right">9.594329</td>
+<td align="right">11.419349</td>
+<td align="right">6.441412</td>
+<td align="right">7.733169</td>
+</tr>
+<tr class="odd">
+<td align="left">gene_3</td>
+<td align="right">13.241111</td>
+<td align="right">11.871583</td>
+<td align="right">12.849857</td>
+<td align="right">7.200326</td>
+<td align="right">15.660604</td>
+<td align="right">10.436325</td>
+</tr>
+<tr class="even">
+<td align="left">gene_4</td>
+<td align="right">6.602055</td>
+<td align="right">6.319973</td>
+<td align="right">16.983152</td>
+<td align="right">13.851125</td>
+<td align="right">10.047557</td>
+<td align="right">11.439034</td>
+</tr>
+<tr class="odd">
+<td align="left">gene_5</td>
+<td align="right">13.049545</td>
+<td align="right">4.845340</td>
+<td align="right">11.362602</td>
+<td align="right">9.584815</td>
+<td align="right">5.911721</td>
+<td align="right">9.503221</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="r-base-function.html#cb16-1"></a>cal_z_score &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb16-2"><a href="r-base-function.html#cb16-2"></a>  (x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(x)</span>
+<span id="cb16-3"><a href="r-base-function.html#cb16-3"></a>}</span>
+<span id="cb16-4"><a href="r-base-function.html#cb16-4"></a>z_transformed &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">apply</span>(gene_expression, <span class="dv">1</span>, cal_z_score))</span>
+<span id="cb16-5"><a href="r-base-function.html#cb16-5"></a>z_transformed</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample_1</th>
+<th align="right">sample_2</th>
+<th align="right">sample_3</th>
+<th align="right">sample_4</th>
+<th align="right">sample_5</th>
+<th align="right">sample_6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gene_1</td>
+<td align="right">0.1460313</td>
+<td align="right">-1.5431628</td>
+<td align="right">-0.3850007</td>
+<td align="right">-0.3613496</td>
+<td align="right">1.1748602</td>
+<td align="right">0.9686217</td>
+</tr>
+<tr class="even">
+<td align="left">gene_2</td>
+<td align="right">1.4076395</td>
+<td align="right">-0.1535628</td>
+<td align="right">0.0278326</td>
+<td align="right">0.8092210</td>
+<td align="right">-1.3221002</td>
+<td align="right">-0.7690300</td>
+</tr>
+<tr class="odd">
+<td align="left">gene_3</td>
+<td align="right">0.4760910</td>
+<td align="right">-0.0017624</td>
+<td align="right">0.3395753</td>
+<td align="right">-1.6316501</td>
+<td align="right">1.3202968</td>
+<td align="right">-0.5025506</td>
+</tr>
+<tr class="even">
+<td align="left">gene_4</td>
+<td align="right">-1.0289609</td>
+<td align="right">-1.0969075</td>
+<td align="right">1.4715870</td>
+<td align="right">0.7171597</td>
+<td align="right">-0.1990251</td>
+<td align="right">0.1361468</td>
+</tr>
+<tr class="odd">
+<td align="left">gene_5</td>
+<td align="right">1.2751620</td>
+<td align="right">-1.3359061</td>
+<td align="right">0.7382760</td>
+<td align="right">0.1724779</td>
+<td align="right">-0.9965197</td>
+<td align="right">0.1465098</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-base-function.html#cb17-1"></a><span class="kw">rowMeans</span>(z_transformed)</span>
+<span id="cb17-2"><a href="r-base-function.html#cb17-2"></a><span class="co">##        gene_1        gene_2        gene_3        gene_4        gene_5 </span></span>
+<span id="cb17-3"><a href="r-base-function.html#cb17-3"></a><span class="co">##  1.017704e-16  2.295617e-16 -2.167682e-16 -1.711594e-16  1.757853e-16</span></span>
+<span id="cb17-4"><a href="r-base-function.html#cb17-4"></a><span class="kw">rowSds</span>(z_transformed)</span>
+<span id="cb17-5"><a href="r-base-function.html#cb17-5"></a><span class="co">## [1] 1 1 1 1 1</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/YinchengChen23/YCClearning/edit/master/02-R_base.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/YinchengChen23/YCClearning/blob/master/02-R_base.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
