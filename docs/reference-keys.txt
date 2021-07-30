@@ -10,6 +10,13 @@ dimension-reduction
 visualization
 ml-model
 rcpp
+input-data-type-and-function
+rcpp調用rmath.h函數
+架構
+add
+sort
+row-sum
+載入函數
 bash-cheatsheet
 基本的指令
 path

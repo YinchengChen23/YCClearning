@@ -24,7 +24,7 @@
 <meta name="author" content="YinCheng Chen" />
 
 
-<meta name="date" content="2021-07-27" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,7 +150,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i><b>5</b> Dimension Reduction</a></li>
 <li class="chapter" data-level="6" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>6</b> Visualization</a></li>
 <li class="chapter" data-level="7" data-path="ml-model.html"><a href="ml-model.html"><i class="fa fa-check"></i><b>7</b> ML Model</a></li>
-<li class="chapter" data-level="8" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>8</b> Rcpp</a></li>
+<li class="chapter" data-level="8" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>8</b> Rcpp</a><ul>
+<li class="chapter" data-level="8.0.1" data-path="rcpp.html"><a href="rcpp.html#input-data-type-and-function"><i class="fa fa-check"></i><b>8.0.1</b> input data type and function</a></li>
+<li class="chapter" data-level="8.0.2" data-path="rcpp.html"><a href="rcpp.html#rcpp調用rmath.h函數"><i class="fa fa-check"></i><b>8.0.2</b> Rcpp調用Rmath.h函數</a></li>
+<li class="chapter" data-level="8.0.3" data-path="rcpp.html"><a href="rcpp.html#架構"><i class="fa fa-check"></i><b>8.0.3</b> 架構</a></li>
+<li class="chapter" data-level="8.0.4" data-path="rcpp.html"><a href="rcpp.html#載入函數"><i class="fa fa-check"></i><b>8.0.4</b> 載入函數</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html"><i class="fa fa-check"></i><b>9</b> Bash cheatsheet</a><ul>
 <li class="chapter" data-level="9.0.1" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#基本的指令"><i class="fa fa-check"></i><b>9.0.1</b> 基本的指令</a></li>
 <li class="chapter" data-level="9.0.2" data-path="bash-cheatsheet.html"><a href="bash-cheatsheet.html#path"><i class="fa fa-check"></i><b>9.0.2</b> PATH</a></li>
@@ -179,7 +184,177 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rcpp" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Rcpp</h1>
+<div id="input-data-type-and-function" class="section level3">
+<h3><span class="header-section-number">8.0.1</span> input data type and function</h3>
+<ul>
+<li>
+int
+<li>
+double
+<li>
+std::string<br />
 
+<li>
+bool
+<li>
+IntegerVector
+<ul>
+<li>
+list.size : 同length(list)
+</ul>
+<li>
+NumercicVector
+<li>
+LogicalVector
+<li>
+CharacterVector
+<li>
+GenericVector
+<li>
+ExpressionVector
+<li>
+RawVector
+<li>
+IntergerMatrix
+<ul>
+<li>
+NumericMatrix x(n,m) : 產生nxm的矩陣
+<li>
+x.nrow(), x.ncol(), x.size() :確認維度
+<li>
+x(i,j) : 看xij
+<li>
+x.row(i) or x(i,<em>), x.column(j) or x(</em>,j)
+<li>
+transpose(x) 轉置
+<li>
+NumericMatrix::zeros(n), NumericMatrix::eye(n) : 建立n階的0或單位方陣
+</ul>
+<li>
+NumericMatrix
+</ul>
+</div>
+<div id="rcpp調用rmath.h函數" class="section level3">
+<h3><span class="header-section-number">8.0.2</span> Rcpp調用Rmath.h函數</h3>
+<p>double expm1(double); /* = exp(x)-1 {care for small x} */</p>
+<p>double log1p(double); /* = log(1+x) {care for small x} */</p>
+<p>double beta(double, double);
+double lbeta(double, double);</p>
+<p>double choose(double, double);
+double lchoose(double, double);</p>
+</div>
+<div id="架構" class="section level3">
+<h3><span class="header-section-number">8.0.3</span> 架構</h3>
+<div id="add" class="section level4">
+<h4><span class="header-section-number">8.0.3.1</span> Add</h4>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rcpp.html#cb20-1"></a><span class="kw">cppFunction</span>(<span class="st">&#39;int cpp_add(int x, int y, int z) {</span></span>
+<span id="cb20-2"><a href="rcpp.html#cb20-2"></a><span class="st">  int sum = x + y + z;</span></span>
+<span id="cb20-3"><a href="rcpp.html#cb20-3"></a><span class="st">  return sum;</span></span>
+<span id="cb20-4"><a href="rcpp.html#cb20-4"></a><span class="st">}&#39;</span>)</span>
+<span id="cb20-5"><a href="rcpp.html#cb20-5"></a><span class="kw">cpp_add</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rcpp.html#cb22-1"></a><span class="kw">cppFunction</span>(<span class="st">&#39;double cpp_sum(NumericVector x) {</span></span>
+<span id="cb22-2"><a href="rcpp.html#cb22-2"></a><span class="st">  int n = x.size();</span></span>
+<span id="cb22-3"><a href="rcpp.html#cb22-3"></a><span class="st">  double total = 0;</span></span>
+<span id="cb22-4"><a href="rcpp.html#cb22-4"></a><span class="st">  for(int i = 0; i &lt; n; ++i) {</span></span>
+<span id="cb22-5"><a href="rcpp.html#cb22-5"></a><span class="st">    total += x[i];</span></span>
+<span id="cb22-6"><a href="rcpp.html#cb22-6"></a><span class="st">  }</span></span>
+<span id="cb22-7"><a href="rcpp.html#cb22-7"></a><span class="st">  return total;</span></span>
+<span id="cb22-8"><a href="rcpp.html#cb22-8"></a><span class="st">}&#39;</span>)</span>
+<span id="cb22-9"><a href="rcpp.html#cb22-9"></a><span class="kw">cpp_sum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="sort" class="section level4">
+<h4><span class="header-section-number">8.0.3.2</span> Sort</h4>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rcpp.html#cb24-1"></a><span class="kw">cppFunction</span>(<span class="st">&#39;NumericVector cpp_sort(NumericVector x) {</span></span>
+<span id="cb24-2"><a href="rcpp.html#cb24-2"></a><span class="st">  int x_length = x.size();</span></span>
+<span id="cb24-3"><a href="rcpp.html#cb24-3"></a><span class="st">  for(int i = 0; i &lt; x_length-1; ++i) {</span></span>
+<span id="cb24-4"><a href="rcpp.html#cb24-4"></a><span class="st">    for(int j = 0; j &lt; x_length-1-i; ++j) {</span></span>
+<span id="cb24-5"><a href="rcpp.html#cb24-5"></a><span class="st">      if (x[j] &gt; x[j+1]) {</span></span>
+<span id="cb24-6"><a href="rcpp.html#cb24-6"></a><span class="st">        double tmp = x[j];</span></span>
+<span id="cb24-7"><a href="rcpp.html#cb24-7"></a><span class="st">        x[j] = x[j+1];</span></span>
+<span id="cb24-8"><a href="rcpp.html#cb24-8"></a><span class="st">        x[j+1] = tmp;</span></span>
+<span id="cb24-9"><a href="rcpp.html#cb24-9"></a><span class="st">      }</span></span>
+<span id="cb24-10"><a href="rcpp.html#cb24-10"></a><span class="st">    }</span></span>
+<span id="cb24-11"><a href="rcpp.html#cb24-11"></a><span class="st">  }</span></span>
+<span id="cb24-12"><a href="rcpp.html#cb24-12"></a><span class="st">  return x;</span></span>
+<span id="cb24-13"><a href="rcpp.html#cb24-13"></a><span class="st">}&#39;</span>)</span>
+<span id="cb24-14"><a href="rcpp.html#cb24-14"></a></span>
+<span id="cb24-15"><a href="rcpp.html#cb24-15"></a><span class="kw">library</span>(microbenchmark)</span>
+<span id="cb24-16"><a href="rcpp.html#cb24-16"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)</span>
+<span id="cb24-17"><a href="rcpp.html#cb24-17"></a>x.benchmark &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</span>
+<span id="cb24-18"><a href="rcpp.html#cb24-18"></a>  <span class="kw">sort</span>(x),</span>
+<span id="cb24-19"><a href="rcpp.html#cb24-19"></a>  <span class="kw">cpp_sort</span>(x)</span>
+<span id="cb24-20"><a href="rcpp.html#cb24-20"></a>)</span>
+<span id="cb24-21"><a href="rcpp.html#cb24-21"></a>x.benchmark</span></code></pre></div>
+<pre><code>## Unit: microseconds
+##         expr    min     lq     mean median      uq      max neval cld
+##      sort(x) 28.153 28.716 32.95934 29.095 31.4520  209.046   100   a
+##  cpp_sort(x)  7.748  8.002 18.96928  8.180  8.6815 1047.013   100   a</code></pre>
+</div>
+<div id="row-sum" class="section level4">
+<h4><span class="header-section-number">8.0.3.3</span> Row sum</h4>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rcpp.html#cb26-1"></a><span class="kw">cppFunction</span>(<span class="st">&#39;NumericVector rowSumsC(NumericMatrix x) {</span></span>
+<span id="cb26-2"><a href="rcpp.html#cb26-2"></a><span class="st">  int nrow = x.nrow(), ncol = x.ncol();</span></span>
+<span id="cb26-3"><a href="rcpp.html#cb26-3"></a><span class="st">  NumericVector result(nrow);</span></span>
+<span id="cb26-4"><a href="rcpp.html#cb26-4"></a><span class="st">  for (int i = 0; i &lt; nrow; i++) {</span></span>
+<span id="cb26-5"><a href="rcpp.html#cb26-5"></a><span class="st">    double total = 0;</span></span>
+<span id="cb26-6"><a href="rcpp.html#cb26-6"></a><span class="st">    for (int j = 0; j &lt; ncol; j++) {</span></span>
+<span id="cb26-7"><a href="rcpp.html#cb26-7"></a><span class="st">      total += x(i, j);</span></span>
+<span id="cb26-8"><a href="rcpp.html#cb26-8"></a><span class="st">    }</span></span>
+<span id="cb26-9"><a href="rcpp.html#cb26-9"></a><span class="st">    result[i] = total;</span></span>
+<span id="cb26-10"><a href="rcpp.html#cb26-10"></a><span class="st">  }</span></span>
+<span id="cb26-11"><a href="rcpp.html#cb26-11"></a><span class="st">  return result;</span></span>
+<span id="cb26-12"><a href="rcpp.html#cb26-12"></a><span class="st">}&#39;</span>)</span>
+<span id="cb26-13"><a href="rcpp.html#cb26-13"></a></span>
+<span id="cb26-14"><a href="rcpp.html#cb26-14"></a>x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">100</span>), <span class="dv">10</span>)</span>
+<span id="cb26-15"><a href="rcpp.html#cb26-15"></a>x.benchmark &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(</span>
+<span id="cb26-16"><a href="rcpp.html#cb26-16"></a>  <span class="kw">rowSums</span>(x),</span>
+<span id="cb26-17"><a href="rcpp.html#cb26-17"></a>  <span class="kw">rowSumsC</span>(x)</span>
+<span id="cb26-18"><a href="rcpp.html#cb26-18"></a>)</span>
+<span id="cb26-19"><a href="rcpp.html#cb26-19"></a>x.benchmark</span></code></pre></div>
+<pre><code>## Unit: microseconds
+##         expr   min    lq     mean median    uq      max neval cld
+##   rowSums(x) 4.799 5.092  6.01852 5.2980 5.583   22.999   100   a
+##  rowSumsC(x) 2.309 2.478 13.87440 2.6125 2.784 1112.333   100   a</code></pre>
+</div>
+</div>
+<div id="載入函數" class="section level3">
+<h3><span class="header-section-number">8.0.4</span> 載入函數</h3>
+<p>可以寫一個cpp_sum.cpp的檔案</p>
+<pre><code>#include &lt;Rcpp.h&gt;
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+double cpp_sum(NumericVector x) {
+  int n = x.size();
+  double total = 0;
+  for(int i = 0; i &lt; n; ++i) {
+    total += x[i];
+  }
+  return total;
+}</code></pre>
+<p>並在R裡接通</p>
+<pre><code>sourceCpp(&quot;cpp_sum.cpp&quot;)
+cpp_sum(c(1,2,3))</code></pre>
+<p>或是在R裡直接</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rcpp.html#cb30-1"></a><span class="kw">sourceCpp</span>(<span class="dt">code=</span><span class="st">&#39;</span></span>
+<span id="cb30-2"><a href="rcpp.html#cb30-2"></a><span class="st">#include &lt;Rcpp.h&gt;</span></span>
+<span id="cb30-3"><a href="rcpp.html#cb30-3"></a><span class="st">using namespace Rcpp;</span></span>
+<span id="cb30-4"><a href="rcpp.html#cb30-4"></a><span class="st">// [[Rcpp::export]]</span></span>
+<span id="cb30-5"><a href="rcpp.html#cb30-5"></a><span class="st">double cpp_sum(NumericVector x) {</span></span>
+<span id="cb30-6"><a href="rcpp.html#cb30-6"></a><span class="st">  int n = x.size();</span></span>
+<span id="cb30-7"><a href="rcpp.html#cb30-7"></a><span class="st">  double total = 0;</span></span>
+<span id="cb30-8"><a href="rcpp.html#cb30-8"></a><span class="st">  for(int i = 0; i &lt; n; ++i) {</span></span>
+<span id="cb30-9"><a href="rcpp.html#cb30-9"></a><span class="st">    total += x[i];</span></span>
+<span id="cb30-10"><a href="rcpp.html#cb30-10"></a><span class="st">  }</span></span>
+<span id="cb30-11"><a href="rcpp.html#cb30-11"></a><span class="st">  return total;</span></span>
+<span id="cb30-12"><a href="rcpp.html#cb30-12"></a><span class="st">}</span></span>
+<span id="cb30-13"><a href="rcpp.html#cb30-13"></a><span class="st">&#39;</span>)</span>
+<span id="cb30-14"><a href="rcpp.html#cb30-14"></a><span class="kw">cpp_sum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+
+</div>
 </div>
             </section>
 

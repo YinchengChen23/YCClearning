@@ -1,1 +1,146 @@
 # Rcpp
+```{r, echo=FALSE}
+library(Rcpp)
+```
+### input data type and function
+<ul>
+  <li>int
+  <li>double
+  <li>std::string	
+  <li>bool
+  <li>IntegerVector
+  <ul>
+    <li> list.size : 同length(list)
+  </ul>
+  <li>NumercicVector
+  <li>LogicalVector
+  <li>CharacterVector
+  <li>GenericVector
+  <li>ExpressionVector
+  <li>RawVector
+  <li>IntergerMatrix
+  <ul>
+    <li> NumericMatrix x(n,m) : 產生nxm的矩陣
+    <li> x.nrow(), x.ncol(), x.size() :確認維度
+    <li> x(i,j) : 看xij
+    <li> x.row(i) or x(i,_), x.column(j) or x(_,j)
+    <li> transpose(x) 轉置
+    <li> NumericMatrix::zeros(n), NumericMatrix::eye(n) : 建立n階的0或單位方陣
+  </ul>
+  <li>NumericMatrix
+</ul>
+
+### Rcpp調用Rmath.h函數
+double  expm1(double); /* = exp(x)-1 {care for small x} */
+
+double  log1p(double); /* = log(1+x) {care for small x} */
+
+double	beta(double, double);
+double	lbeta(double, double);
+
+double	choose(double, double);
+double	lchoose(double, double);
+
+### 架構
+#### Add
+```{r}
+cppFunction('int cpp_add(int x, int y, int z) {
+  int sum = x + y + z;
+  return sum;
+}')
+cpp_add(1,2,3)
+
+cppFunction('double cpp_sum(NumericVector x) {
+  int n = x.size();
+  double total = 0;
+  for(int i = 0; i < n; ++i) {
+    total += x[i];
+  }
+  return total;
+}')
+cpp_sum(c(1,2,3))
+```
+#### Sort
+```{r}
+cppFunction('NumericVector cpp_sort(NumericVector x) {
+  int x_length = x.size();
+  for(int i = 0; i < x_length-1; ++i) {
+    for(int j = 0; j < x_length-1-i; ++j) {
+      if (x[j] > x[j+1]) {
+        double tmp = x[j];
+        x[j] = x[j+1];
+        x[j+1] = tmp;
+      }
+    }
+  }
+  return x;
+}')
+
+library(microbenchmark)
+x <- runif(100)
+x.benchmark <- microbenchmark(
+  sort(x),
+  cpp_sort(x)
+)
+x.benchmark
+```
+#### Row sum
+```{r}
+cppFunction('NumericVector rowSumsC(NumericMatrix x) {
+  int nrow = x.nrow(), ncol = x.ncol();
+  NumericVector result(nrow);
+  for (int i = 0; i < nrow; i++) {
+    double total = 0;
+    for (int j = 0; j < ncol; j++) {
+      total += x(i, j);
+    }
+    result[i] = total;
+  }
+  return result;
+}')
+
+x <- matrix(sample(100), 10)
+x.benchmark <- microbenchmark(
+  rowSums(x),
+  rowSumsC(x)
+)
+x.benchmark
+```
+### 載入函數
+可以寫一個cpp_sum.cpp的檔案
+```
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+double cpp_sum(NumericVector x) {
+  int n = x.size();
+  double total = 0;
+  for(int i = 0; i < n; ++i) {
+    total += x[i];
+  }
+  return total;
+}
+```
+並在R裡接通
+```
+sourceCpp("cpp_sum.cpp")
+cpp_sum(c(1,2,3))
+```
+或是在R裡直接
+```{r}
+sourceCpp(code='
+#include <Rcpp.h>
+using namespace Rcpp;
+// [[Rcpp::export]]
+double cpp_sum(NumericVector x) {
+  int n = x.size();
+  double total = 0;
+  for(int i = 0; i < n; ++i) {
+    total += x[i];
+  }
+  return total;
+}
+')
+cpp_sum(c(1,2,3))
+```
